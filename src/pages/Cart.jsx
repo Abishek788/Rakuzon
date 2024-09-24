@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './cart.css'; // Assuming you have your styles in this file
 
-const App = () => {
+const cart = () => {
     const [cartItems, setCartItems] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -152,4 +152,4 @@ const App = () => {
     );
 };
 
-export default App;
+export default cart;
