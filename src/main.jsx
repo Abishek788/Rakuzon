@@ -1,43 +1,3 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom/client';
-// import App from './App.jsx';
-// import Navbar from './components/Navbar';
-// import './index.css';
-// import { BrowserRouter } from 'react-router-dom';
-// import ShopContextProvider from './context/shopcontext.jsx';
-// import Footer from './components/Footer';
-// import { Amplify } from 'aws-amplify';
-// import awsExports from './aws-exports';
-// import { Authenticator } from '@aws-amplify/ui-react';
-// import '@aws-amplify/ui-react/styles.css';
-
-// // Configure Amplify with AWS settings
-// Amplify.configure(awsExports);
-
-
-// function MainApp() {
-//   return (
-//     <Authenticator>
-//       {({ signOut }) => (
-//         <>
-//         <div className='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]'> <Navbar signOut={signOut} /></div>
-         
-//           <App  />
-         
-//           <Footer />
-//         </>
-//       )}
-//     </Authenticator>
-//   );
-// }
-
-// ReactDOM.createRoot(document.getElementById('root')).render(
-//   <BrowserRouter>
-//     <ShopContextProvider>
-//       <MainApp />
-//     </ShopContextProvider>
-//   </BrowserRouter>
-// );
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -123,11 +83,13 @@ function MainApp() {
       <Authenticator  components={components} className="max-w-xl mx-auto mt-20 p-10 bg-gray-300 shadow-md rounded-lg">
         {({ signOut }) => (
           <>
+          <ShopContextProvider>
             <div className='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]'>
               <Navbar signOut={signOut} />
             </div>
             <App />
             <Footer />
+            </ShopContextProvider>
           </>
         )}
       </Authenticator>
@@ -138,9 +100,9 @@ function MainApp() {
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
-      <ShopContextProvider>
+      {/* <ShopContextProvider> */}
         <MainApp />
-      </ShopContextProvider>
+      {/* </ShopContextProvider> */}
     </BrowserRouter>
   </React.StrictMode>
 );
