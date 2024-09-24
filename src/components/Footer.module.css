@@ -1,0 +1,125 @@
+/* Base styles for the banner */
+.banner {
+    margin-top: 10px;
+    background-color: #ffcc00; /* Yellow background */
+    color: #000; /* Black text color */
+    padding: 25px 0; /* Padding for the banner */
+    text-align: center; /* Center text */
+    font-size: 20px; /* Base font size */
+}
+
+/* Responsive font size */
+@media (max-width: 768px) {
+    .banner {
+        font-size: 18px; /* Slightly smaller font size for tablets */
+        padding: 20px 0; /* Reduced padding for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .banner {
+        font-size: 16px; /* Smaller font size for mobile */
+        padding: 15px 0; /* Further reduced padding */
+    }
+}
+
+/* Shop button styles */
+.shopButton {
+    background-color: #000; /* Black button background */
+    color: #fff; /* White button text */
+    padding: 10px 20px; /* Padding inside the button */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    text-decoration: none; /* Remove underline */
+    margin-left: 20px; /* Space between text and button */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+/* Button hover effect */
+.shopButton:hover {
+    background-color: #ff3c00; /* Change button color on hover */
+}
+
+/* Footer styles */
+.footer {
+    color: #000000; /* Text color */
+    padding: 40px 0; /* Top and bottom padding */
+    text-align: center; /* Center text in footer */
+}
+
+/* Container styles */
+.container {
+    display: flex; /* Flex layout */
+    justify-content: space-around; /* Space sections evenly */
+    max-width: 1200px; /* Limit max width */
+    margin: auto; /* Center the container */
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+}
+
+/* Section styles */
+.section {
+    flex: 1; /* Equal width for each section */
+    margin: 0 20px; /* Margin between sections */
+    min-width: 250px; /* Minimum width for each section */
+}
+
+/* Section heading styles */
+.section h3 {
+    font-size: 20px; /* Base font size for headings */
+    margin-bottom: 15px; /* Space below headings */
+    text-transform: uppercase; /* Uppercase for headings */
+}
+
+/* Unordered list styles */
+.section ul {
+    list-style: none; /* Remove default list styling */
+    padding: 0; /* Remove padding */
+}
+
+/* List item styles */
+.section ul li {
+    margin: 10px 0; /* Space between list items */
+}
+
+/* Link styles */
+.section a {
+    color: #000000; /* Link color */
+    text-decoration: none; /* Remove underline */
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+/* Link hover effect */
+.section a:hover {
+    color: #ff3c00; /* Change color on hover */
+}
+
+/* Bottom section styles */
+.bottom {
+    margin-top: 30px; /* Space above the copyright text */
+    font-size: 14px; /* Smaller font size */
+}
+
+/* Bottom section paragraph styles */
+.bottom p {
+    margin: 0; /* Remove default margin */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Stack sections vertically on smaller screens */
+        align-items: center; /* Center align sections */
+    }
+
+    .section {
+        margin: 20px 0; /* Space between stacked sections */
+    }
+}
+
+@media (max-width: 480px) {
+    .shopButton {
+        margin-left: 10px; /* Reduce space for the button */
+        padding: 8px 16px; /* Smaller button padding for mobile */
+    }
+}
