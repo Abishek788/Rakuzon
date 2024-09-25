@@ -5,8 +5,8 @@ const Footer = () => {
     return (
         <>
             <div className={styles.banner}>
-                Raku gives 15% off
-                <a href="#" className={styles.shopButton}>Shop Now</a>
+                Rakuzon gives 15% off
+                <a href="/collection" className={styles.shopButton}>Shop Now</a>
             </div>
 
             <footer className={styles.footer}>

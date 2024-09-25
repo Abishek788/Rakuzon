@@ -1,40 +1,46 @@
-import React, { useContext, useEffect, useState } from 'react'; // Fixed imports
-import { ShopContext } from '../context/shopcontext'; // Ensure the path is correct
-import Title from './title'; // Corrected the path for Title component
-import ProductItem from './Productitem';
+import React, { useContext, useEffect, useState } from 'react';
+import { ShopContext } from '../context/shopcontext'; // Update the correct path for ShopContext
+import Title from './title'; // Ensure correct path for Title component
+import ProductItem from './Productitem'; // Ensure correct path for ProductItem component
 
-const BestSeller = () => {
+const LatestCollection = () => {
     const { products } = useContext(ShopContext);
-    const [bestSeller, setBestSeller] = useState([]);
+    const [latestProducts, setLatestProducts] = useState([]);
+
+    // Function to shuffle an array
+    const shuffleArray = (array) => {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+        }
+        return array;
+    };
 
     useEffect(() => {
-        const bestProduct = products.filter((item) => item.bestseller);
-        console.log('Best Sellers:', bestProduct); // Log the best sellers
-        setBestSeller(bestProduct.slice(0, 5));
-    }, [products]); // Added products to dependency array
+        // Shuffle the products and get the first 10
+        const shuffledProducts = shuffleArray([...products]);
+        setLatestProducts(shuffledProducts.slice(0, 10));
+    }, [products]); // Dependency array should include products
 
     return (
-        <div className='my-10'>
+        <div className="my-10">
             <div className='text-center py-8 text-3xl'>
-                <Title text1='BEST' text2='SELLERS' />
-                <p className='w-3/4 m-auto text-xs sm:text-sm md:text-base text-gray-600'>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-                </p>
+                <Title text1='BEST' text2='SELLER' />
             </div>
-            <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 gap-y-6'>
-                {bestSeller.map((item, index) => (
-                    <ProductItem 
-                        key={index} 
-                        id={item._id} 
-                        name={item.name} 
-                        image={item.image} 
-                        price={item.price} // Ensure that ProductItem accepts 'price'
-                    />
+            <div className='flex overflow-x-auto space-x-4 py-4 snap-x snap-mandatory'>
+                {latestProducts.map((item, index) => (
+                    <div key={index} className="flex-shrink-0 w-48 snap-start"> {/* Set a fixed width for each item */}
+                        <ProductItem
+                            id={item.productId}
+                            image={item.image}
+                            name={item.name}
+                            price={item.price}
+                        />
+                    </div>
                 ))}
             </div>
         </div>
     );
-}
+};
 
-export default BestSeller;
-
+export default LatestCollection;
