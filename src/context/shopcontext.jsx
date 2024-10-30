@@ -87,7 +87,9 @@ const ShopContextProvider = (props) => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch('https://uvlnq47ayg.execute-api.us-east-1.amazonaws.com/prod');
+      const response = await fetch(
+        "https://xsxwn7an1f.execute-api.us-east-1.amazonaws.com/dev"
+      );
       if (!response.ok) {
         throw new Error('Failed to fetch products');
       }

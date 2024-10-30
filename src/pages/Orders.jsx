@@ -13,36 +13,42 @@ function Cart1() {
     useEffect(() => {
         const fetchCartItems = async () => {
             if (!userId) {
-                setLoading(false);
-                return;
+              setLoading(false);
+              return;
             }
-
+      
             try {
-                const response = await fetch(`https://gnp7ejkl8e.execute-api.us-east-1.amazonaws.com/prod?userId=${encodeURIComponent(userId)}`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                });
-
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
+              const response = await fetch(
+                `https://zte7uvd0za.execute-api.us-east-1.amazonaws.com/dev?userId=${encodeURIComponent(
+                  userId
+                )}`,
+                {
+                  method: "GET",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
                 }
-
-                const data = await response.json();
-                const parsedData = typeof data.body === 'string' ? JSON.parse(data.body) : data.body;
-                const matchedItems = parsedData.filter(item => item.userId === userId);
-                setCartItems(matchedItems);
+              );
+      
+              if (!response.ok) {
+                throw new Error("Network response was not ok");
+              }
+      
+              const data = await response.json();
+              const parsedData =
+                typeof data.body === "string" ? JSON.parse(data.body) : data.body;
+              setCartItems(parsedData);
             } catch (error) {
-                setError('Error loading cart items. Please try again later.');
-                console.error('Error fetching cart items:', error);
+              setError("Error loading cart items. Please try again later.");
+              console.error("Error fetching cart items:", error);
             } finally {
-                setLoading(false);
+              setLoading(false);
             }
-        };
-
-        fetchCartItems();
-    }, [userId]);
+          };
+      
+          fetchCartItems();
+        }, [userId]);
+      
 
     const handleCheckout = () => {
         setOrderSuccessful(true);
@@ -56,14 +62,13 @@ function Cart1() {
         return (
             <div className="App">
                 <h1>Order Successful</h1>
-                <Link to="/" className="my-buttonu">Go to Home Page</Link>
+                <Link to="/" className="my-buttonu hover-effect">Go to Home Page</Link>
             </div>
         );
     }
     const styles = {
       orderSuccessfulContainer: {
           maxWidth: '800px',
-          
           margin: '0 auto',
           padding: '60px',
           marginBottom:'50px',
@@ -128,13 +133,17 @@ function Cart1() {
           marginTop: '30px',
       },
       myButtonu: {
-          margintop:'500px',
+          marginTop:'500px',
           backgroundColor: '#111',
           color: '#fff',
           padding: '10px 20px',
           borderRadius: '5px',
           textDecoration: 'none',
           margin: '0 10px',
+          transition: 'background-color 0.3s ease',
+      },
+      myButtonuHover: {
+          backgroundColor: '#333',
       },
   };
   return (
@@ -158,9 +167,22 @@ function Cart1() {
               <h3>Total: ${calculateSubtotal()}</h3>
           </div>
           <div style={styles.orderActions}>
-              {/* <p>An email confirmation has been sent to your registered email address.</p> */}
-              <Link to="/" style={styles.myButtonu}>Continue Shopping</Link>
-              <Link to="/orders" style={styles.myButtonu}>Email Recipt</Link>
+              <Link 
+                to="/" 
+                style={styles.myButtonu}
+                onMouseEnter={(e) => e.target.style.backgroundColor = styles.myButtonuHover.backgroundColor}
+                onMouseLeave={(e) => e.target.style.backgroundColor = styles.myButtonu.backgroundColor}
+              >
+                Continue Shopping
+              </Link>
+              <Link 
+                to="/orders" 
+                style={styles.myButtonu}
+                onMouseEnter={(e) => e.target.style.backgroundColor = styles.myButtonuHover.backgroundColor}
+                onMouseLeave={(e) => e.target.style.backgroundColor = styles.myButtonu.backgroundColor}
+              >
+                Email Receipt
+              </Link>
           </div>
       </div>
   );

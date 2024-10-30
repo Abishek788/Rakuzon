@@ -9,6 +9,7 @@ import Contact from './pages/Contact';
 import Cart1 from './pages/Cart1';
 import Orders from './pages/Orders';
 import SearchBar from './components/SearchBar';
+import Admin from './components/admin';
 
 const App = () => {
   return (
@@ -23,8 +24,10 @@ const App = () => {
         <Route path='/Cart1' element={<Cart1 />} />
         <Route path='/about' element={<About />} />
         <Route path='/orders' element={<Orders />} />
+        <Route path='/admin' element={<Admin />} />
         {/* Redirect if user is not authenticated (Example: Add a protected route for orders) */}
         <Route path='/protected-orders' element={<ProtectedRoute element={<Orders />} />} />
+
       </Routes>
     </div>
   );

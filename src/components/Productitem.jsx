@@ -85,7 +85,7 @@ const ProductItem = ({ id, image, name, price }) => {
 
   const addToCart = async (productId) => {
     if (!userId) {
-      console.error('User not logged in');
+      console.error("User not logged in");
       // You might want to show a message to the user or redirect to login
       return;
     }
@@ -99,38 +99,46 @@ const ProductItem = ({ id, image, name, price }) => {
       quantity,
     };
 
-    console.log('Adding to cart:', payload);
+    console.log("Adding to cart:", payload);
 
     try {
-      const response = await fetch('https://skuy6l8a4j.execute-api.us-east-1.amazonaws.com/prod/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-      });
+      const response = await fetch(
+        "https://8ae3l6yk6l.execute-api.us-east-1.amazonaws.com/dev",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            body: JSON.stringify(payload)}) 
+          // body: JSON.stringify(payload),
+        }
+      );
 
       if (response.ok) {
         const data = await response.json();
-        console.log('Product added to cart:', data);
+        console.log("Product added to cart:", data);
         setCart([...cart, { productId, name, image, price, quantity }]);
       } else {
-        console.error('Failed to add product to cart');
+        console.error("Failed to add product to cart");
       }
     } catch (error) {
-      console.error('Error adding product to cart:', error);
+      console.error("Error adding product to cart:", error);
     }
   };
 
   return (
     <div className="block">
       <div className="hover:scale-105 transition-transform ease-in-out text-gray-700 cursor-pointer">
-        <div className='overflow-hidden'>
+        <div className="overflow-hidden">
           <img src={image} alt={name} className="w-full h-auto" />
         </div>
-        <p className='pt-3 pb-1 text-sm truncate'>{name}</p>
-        <p className='text-sm font-medium'>{currency}{price}</p>
-        
+        <p className="pt-3 pb-1 text-sm truncate">{name}</p>
+        <p className="text-sm font-medium">
+          {currency}
+          {price}
+        </p>
+
         <div className="flex items-center mt-2">
           <input
             type="number"
@@ -139,10 +147,13 @@ const ProductItem = ({ id, image, name, price }) => {
             onChange={(e) => setQuantity(Number(e.target.value))}
             className="w-16 text-center border rounded focus:outline-none"
           />
-          
+
           <button
             className="ml-4 bg-black text-sm font-medium text-white py-2 px-4 rounded-md transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg focus:outline-none"
-            onClick={() => addToCart(id)}
+            onClick={() => {
+              console.log("Product ID:", id); // Log the id
+              addToCart(id);
+            }}
           >
             Add to Cart
           </button>
@@ -153,3 +164,4 @@ const ProductItem = ({ id, image, name, price }) => {
 };
 
 export default ProductItem;
+
